@@ -22,7 +22,7 @@ function generateGrid(numberOfRowsAndColumns) {
 
   document.querySelectorAll(".grid-item").forEach((gridItem) => {
     gridItem.addEventListener("mouseover", (e) => {
-      e.currentTarget.style.backgroundColor = "black";
+      e.currentTarget.style.backgroundColor = getRandomColor();
     });
   });
 }
@@ -38,4 +38,19 @@ function getRowsAndColumnsFromUser() {
   } while (response < 0 || response > 100);
 
   return response;
+}
+
+function getRandomColor() {
+  let randomHexColor = "#";
+  for (let i = 0; i < 6; i++) {
+    randomHexColor = randomHexColor.concat(getRandomHexCharacter());
+  }
+
+  return randomHexColor;
+}
+
+function getRandomHexCharacter() {
+  const characters = "ABCDEF0123456789";
+  const randomIndex = Math.floor(Math.random() * characters.length);
+  return characters.charAt(randomIndex);
 }
