@@ -5,19 +5,16 @@
 }
 
 .grid-item {
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
-  width: 40px;
-  height: 40px;
+  border: 1px solid black;
   box-sizing: border-box;
+  flex: 1 1 auto;
 }
 
 .grid-container {
   display: flex;
   flex-wrap: wrap;
   width: 640px;
-  border-left: 1px solid black;
-  border-top: 1px solid black;
+  height: 640px;
 }
 
 .reset-button {

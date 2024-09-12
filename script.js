@@ -1,25 +1,30 @@
 const newGridButton = document.querySelector(".reset-button");
 const gridContainer = document.querySelector(".grid-container");
-let numberOfRowsAndColumns = 16;
+let numberOfRowsAndColumns = 4;
 
-generateGrid();
-
-document.querySelectorAll(".grid-item").forEach((gridItem) => {
-  gridItem.addEventListener("mouseover", (e) => {
-    e.currentTarget.style.backgroundColor = "black";
-  });
-});
+generateGrid(numberOfRowsAndColumns);
 
 newGridButton.addEventListener("click", () => {
   numberOfRowsAndColumns = getRowsAndColumnsFromUser();
+  document.querySelectorAll(".grid-item").forEach((gridItem) => {
+    gridItem.remove();
+  });
+  generateGrid(numberOfRowsAndColumns);
 });
 
-function generateGrid() {
-  for (let i = 0; i < 16 * 16; i++) {
+function generateGrid(numberOfRowsAndColumns) {
+  for (let i = 0; i < numberOfRowsAndColumns * numberOfRowsAndColumns; i++) {
     const gridItem = document.createElement("div");
     gridItem.className = "grid-item";
+    gridItem.style.flexBasis = `calc(100% / ${numberOfRowsAndColumns})`;
     gridContainer.appendChild(gridItem);
   }
+
+  document.querySelectorAll(".grid-item").forEach((gridItem) => {
+    gridItem.addEventListener("mouseover", (e) => {
+      e.currentTarget.style.backgroundColor = "black";
+    });
+  });
 }
 
 function getRowsAndColumnsFromUser() {
