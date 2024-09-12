@@ -17,12 +17,18 @@ function generateGrid(numberOfRowsAndColumns) {
     const gridItem = document.createElement("div");
     gridItem.className = "grid-item";
     gridItem.style.flexBasis = `calc(100% / ${numberOfRowsAndColumns})`;
+    gridItem.style.opacity = 0.1;
     gridContainer.appendChild(gridItem);
   }
 
   document.querySelectorAll(".grid-item").forEach((gridItem) => {
     gridItem.addEventListener("mouseover", (e) => {
-      e.currentTarget.style.backgroundColor = getRandomColor();
+      if (e.currentTarget.style.backgroundColor == "") {
+        console.log("here");
+        e.currentTarget.style.backgroundColor = getRandomColor();
+      }
+      e.currentTarget.style.opacity =
+        parseFloat(e.currentTarget.style.opacity) + 0.1;
     });
   });
 }
